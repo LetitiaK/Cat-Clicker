@@ -11,39 +11,51 @@
 </head>
 <body>
   <div class="row">
-    <div class="col-sm-6">
-      <h3 id="cat1"></h3>
-      <img id="catpic1" src="img/kitten.jpg" alt="kitten number 1" height="500px">
-      <p>Number of clicks:</p>
-      <p id="counter1">0</p>
+    <div class="col-sm-3">
+      <ul id="cats">
+      </ul>
     </div>
-    <div class="col-sm-6">
-      <h3 id="cat2"></h3>
-      <img id="catpic2" src="img/kitten2.jpg" alt="kitten number 2" height="500px">
+    <div class="col-sm-9" id="catpage">
+      <h3 id="catname"></h3>
+      <div id="catpic"></div>
       <p>Number of clicks:</p>
-      <p id="counter2">0</p>
+      <p id="counter"></p>
     </div>
   </div>
 
   <script>
-    var cat1_name = "Garfield";
-    var cat2_name = "Sina";
+    var cat_names = ["Garfield", "Sina", "Susi", "Strolch", "Felix"]
+    var clicks = [0,0,0,0,0]
 
     $(function() {
-      $('#cat1').html(cat1_name);
-      $('#cat2').html(cat2_name);
+      for (i=0; i < cat_names.length; i++) {
+        var cat = cat_names[i];
+        var elem = document.createElement('li');
+        elem.textContent = cat;
+        elem.addEventListener('click', (function(catCopy,i) {
+          return function() {
+            document.getElementById("catpic").innerHTML = '';
+            $('#catname').html(catCopy);
+            $('#counter').html(clicks[i]);
+            var image = document.createElement('img');
+            image.src = "img/" + catCopy + ".jpg";
+            image.setAttribute("height", "500px");
+            image.setAttribute("id", catCopy);
+            document.getElementById("catpic").appendChild(image);
+            var cat_click = clicks[i];
+            $('#' + catCopy).click(function() {
+              console.log("I am here");
+              cat_click++;
+              clicks[i] = cat_click;
+              $('#counter').html(clicks[i]);
+            });
+          };
+        })(cat,i));
+
+        document.getElementById("cats").appendChild(elem);
+      };
     });
 
-    var count1 = 0;
-    var count2 = 0
-    $('#catpic1').click(function() {
-      count1++;
-      $('#counter1').html(count1);
-    });
-    $('#catpic2').click(function() {
-      count2++;
-      $('#counter2').html(count2);
-    });
   </script>
 
 </body>
