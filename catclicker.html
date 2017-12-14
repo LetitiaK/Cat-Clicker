@@ -1,18 +1,50 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Cat Clicker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <img id="catpic" src="img/kitten.jpg" alt="kitten" height="300px">
-  <p>Number of clicks:</p>
-  <p id="counter">0</p>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 id="cat1"></h3>
+      <img id="catpic1" src="img/kitten.jpg" alt="kitten number 1" height="500px">
+      <p>Number of clicks:</p>
+      <p id="counter1">0</p>
+    </div>
+    <div class="col-sm-6">
+      <h3 id="cat2"></h3>
+      <img id="catpic2" src="img/kitten2.jpg" alt="kitten number 2" height="500px">
+      <p>Number of clicks:</p>
+      <p id="counter2">0</p>
+    </div>
+  </div>
 
   <script>
-    var count = 0;
-    $('#catpic').click(function() {
-      count++;
-      $('#counter').html(count);
+    var cat1_name = "Garfield";
+    var cat2_name = "Sina";
+
+    $(function() {
+      $('#cat1').html(cat1_name);
+      $('#cat2').html(cat2_name);
+    });
+
+    var count1 = 0;
+    var count2 = 0
+    $('#catpic1').click(function() {
+      count1++;
+      $('#counter1').html(count1);
+    });
+    $('#catpic2').click(function() {
+      count2++;
+      $('#counter2').html(count2);
     });
   </script>
+
 </body>
 </html>
